@@ -137,7 +137,7 @@ function verifierReponse() {
 <body onload="startGame()">
 
 <div class="topnav">
-  <a href="Home.html">Home</a>
+  <a href="index.html">Home</a>
 </div>
 
 <br>
