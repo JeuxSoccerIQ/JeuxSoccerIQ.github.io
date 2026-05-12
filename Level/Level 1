@@ -1,1 +1,173 @@
+<!DOCTYPE html>
 
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>SoccerIQ - Niveau 1</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #1A0000;
+  color: white;
+  text-align: center;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #D2042D;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: white;
+  color: black;
+}
+
+.quizBox {
+  background-color: white;
+  color: black;
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+button {
+  background-color: #D2042D;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #8B0000;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+</style>
+
+<script>
+
+let score = 0;
+let question = 0;
+
+let questions = [
+  "Combien font 5 + 3 ?",
+  "Combien font 10 - 4 ?",
+  "Combien font 6 x 2 ?"
+];
+
+let answers = [
+  "8",
+  "6",
+  "12"
+];
+
+function startGame() {
+  document.getElementById("question").innerHTML = questions[question];
+}
+
+function verifierReponse() {
+
+  let userAnswer = document.getElementById("reponse").value;
+
+  if(userAnswer == answers[question]) {
+    score++;
+    document.getElementById("resultat").innerHTML =
+    "⚽ BUT! Bonne réponse!";
+  }
+
+  else {
+    document.getElementById("resultat").innerHTML =
+    "❌ Mauvaise réponse!";
+  }
+
+  question++;
+
+  if(question < questions.length) {
+
+    setTimeout(function() {
+
+      document.getElementById("question").innerHTML =
+      questions[question];
+
+      document.getElementById("reponse").value = "";
+
+      document.getElementById("resultat").innerHTML = "";
+
+    }, 1000);
+
+  }
+
+  else {
+
+    setTimeout(function() {
+
+      document.getElementById("quiz").innerHTML =
+      "<h2>🏆 Niveau terminé!</h2>" +
+      "<h2>Score final: " + score + "/" + questions.length + "</h2>";
+
+    }, 1000);
+
+  }
+
+}
+
+</script>
+
+</head>
+
+<body onload="startGame()">
+
+<div class="topnav">
+  <a href="Home.html">Home</a>
+</div>
+
+<br>
+
+<h1>SoccerIQ ⚽  Niveau 1</h1>
+
+<img src="Image/SoccerIQlogo.png" width="25%">
+
+<br><br>
+
+<div class="quizBox" id="quiz">
+
+<h2 id="question"></h2>
+
+<input type="text" id="reponse" placeholder="Ta réponse">
+
+<br><br>
+
+<button onclick="verifierReponse()">
+Tirer au but ⚽
+</button>
+
+<h2 id="resultat"></h2>
+
+</div>
+
+<br>
+
+<h2>Réponds correctement pour marquer des buts!</h2>
+
+</body>
+
+</html>
