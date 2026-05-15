@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -37,7 +36,7 @@ body {
 .quizBox {
   background-color: white;
   color: black;
-  width: 50%;
+  width: 60%;
   margin: auto;
   padding: 20px;
   border-radius: 15px;
@@ -50,6 +49,7 @@ button {
   padding: 10px 20px;
   font-size: 18px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 button:hover {
@@ -61,73 +61,103 @@ input {
   font-size: 16px;
 }
 
+.question {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
 </style>
 
 <script>
 
+let currentQuestion = 0;
 let score = 0;
-let question = 0;
 
-let questions = [
-  "Combien font 5 + 3 ?",
-  "Combien font 10 - 4 ?",
-  "Combien font 6 x 2 ?"
-];
-
-let answers = [
-  "8",
-  "6",
-  "12"
+const quizQuestions = [
+{
+  question: "Quelle est la valeur de pi pour tenter un tir au but? ",
+  answer: "3,14"
+},
+{
+  question: "Si une voiture conduit a 300km dans 5 heures. C’est quoi leur vitesse moyenne par heur?",
+  answer: "60 km/h"
+},
+{
+  question: "Toute les angles d’un triangle est égale a :",
+  answer: "180 degré"
+},
+{
+  question: "Un magasin vend une chemise avec une réduction de 20 %. Si le prix initial était de 50 $, quel serait le prix de vente ?",
+  answer: "40$"
+},
+{
+  question: "Quel pays a gagné la Coupe du Monde 2022 ?",
+  answer: "argentine"
+}
 ];
 
 function startGame() {
-  document.getElementById("question").innerHTML = questions[question];
+  showQuestion();
+}
+
+function showQuestion() {
+
+  if(currentQuestion < quizQuestions.length) {
+
+    document.getElementById("question").innerHTML =
+      quizQuestions[currentQuestion].question;
+
+    document.getElementById("reponse").value = "";
+
+    document.getElementById("resultat").innerHTML = "";
+  }
+  else {
+
+    let message = "Ton score final : " + score + "/" + quizQuestions.length + "<br><br>";
+
+    if(score == 5) {
+      message += "🏆 Excellent joueur!";
+    }
+    else if(score >= 3) {
+      message += "⚽ Bon travail!";
+    }
+    else {
+      message += "💪 Continue à pratiquer!";
+    }
+
+    document.getElementById("quiz").innerHTML =
+      "<h2>" + message + "</h2>";
+  }
 }
 
 function verifierReponse() {
 
-  let userAnswer = document.getElementById("reponse").value;
+  let userAnswer =
+    document.getElementById("reponse").value.toLowerCase().trim();
 
-  if(userAnswer == answers[question]) {
+  let correctAnswer =
+    quizQuestions[currentQuestion].answer.toLowerCase();
+
+  if(userAnswer == correctAnswer) {
+
     score++;
+
     document.getElementById("resultat").innerHTML =
-    "⚽ BUT! Bonne réponse!";
+      "✅ Bonne réponse!";
   }
-
-  else {
-    document.getElementById("resultat").innerHTML =
-    "❌ Mauvaise réponse!";
-  }
-
-  question++;
-
-  if(question < questions.length) {
-
-    setTimeout(function() {
-
-      document.getElementById("question").innerHTML =
-      questions[question];
-
-      document.getElementById("reponse").value = "";
-
-      document.getElementById("resultat").innerHTML = "";
-
-    }, 1000);
-
-  }
-
   else {
 
-    setTimeout(function() {
-
-      document.getElementById("quiz").innerHTML =
-      "<h2>🏆 Niveau terminé!</h2>" +
-      "<h2>Score final: " + score + "/" + questions.length + "</h2>";
-
-    }, 1000);
-
+    document.getElementById("resultat").innerHTML =
+      "❌ Mauvaise réponse! La bonne réponse était : " +
+      quizQuestions[currentQuestion].answer;
   }
 
+  currentQuestion++;
+
+  setTimeout(showQuestion, 1500);
 }
 
 </script>
@@ -136,31 +166,35 @@ function verifierReponse() {
 
 <body onload="startGame()">
 
+<!-- Navigation -->
 <div class="topnav">
   <a href="index.html">Home</a>
+  <a href="Niveau2.html">Niveau 2</a>
 </div>
 
 <br>
 
-<h1>SoccerIQ ⚽  Niveau 1</h1>
+<h1>SoccerIQ ⚽ Niveau 1</h1>
 
+<!-- Logo -->
 <img src="Image/SoccerIQlogo.png" width="25%">
 
 <br><br>
 
+<!-- Quiz -->
 <div class="quizBox" id="quiz">
 
-<h2 id="question"></h2>
+  <h2 id="question"></h2>
 
-<input type="text" id="reponse" placeholder="Ta réponse">
+  <input type="text" id="reponse" placeholder="Ta réponse">
 
-<br><br>
+  <br><br>
 
-<button onclick="verifierReponse()">
-Tirer au but ⚽
-</button>
+  <button onclick="verifierReponse()">
+    Tirer au but ⚽
+  </button>
 
-<h2 id="resultat"></h2>
+  <h2 id="resultat"></h2>
 
 </div>
 
