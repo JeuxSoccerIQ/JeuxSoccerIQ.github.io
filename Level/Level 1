@@ -119,13 +119,13 @@ function showQuestion() {
     let message = "Ton score final : " + score + "/" + quizQuestions.length + "<br><br>";
 
     if(score == 5) {
-      message += "🏆 Excellent joueur!";
+      message += "Excellent joueur! Clique sur niveau 2";
     }
     else if(score >= 3) {
-      message += "⚽ Bon travail!";
+      message += "Bon travail! Clique sur niveau 2";
     }
     else {
-      message += "💪 Continue à pratiquer!";
+      message += "Continue à pratiquer! Clique sur niveau 2";
     }
 
     document.getElementById("quiz").innerHTML =
@@ -151,7 +151,7 @@ function verifierReponse() {
   else {
 
     document.getElementById("resultat").innerHTML =
-      "❌ Mauvaise réponse! La bonne réponse était : " +
+      " Mauvaise réponse! La bonne réponse était : " +
       quizQuestions[currentQuestion].answer;
   }
 
@@ -169,12 +169,12 @@ function verifierReponse() {
 <!-- Navigation -->
 <div class="topnav">
   <a href="index.html">Home</a>
-  <a href="Niveau2.html">Niveau 2</a>
+  <a href="Level2.html">Niveau 2</a>
 </div>
 
 <br>
 
-<h1>SoccerIQ ⚽ Niveau 1</h1>
+<h1>SoccerIQ ⚽ Niveau 1 (9e)</h1>
 
 <!-- Logo -->
 <img src="Image/SoccerIQlogo.png" width="25%">
@@ -205,3 +205,7 @@ function verifierReponse() {
 </body>
 
 </html>
+
+<!--Lien:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions?utm_source=chatgpt.com-->
+<!-- Lien:https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout -->
+<!-- Lien:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach?utm_source=chatgpt.com -->
