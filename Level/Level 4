@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<title>SoccerIQ - Niveau 4</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #1A0000;
+  color: white;
+  text-align: center;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #D2042D;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: white;
+  color: black;
+}
+
+.quizBox {
+  background-color: white;
+  color: black;
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+button {
+  background-color: #D2042D;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 60%;
+}
+
+button:hover {
+  background-color: #8B0000;
+}
+
+#options button {
+  margin: 10px;
+}
+
+</style>
+
+<script>
+
+let currentQuestion = 0;
+let score = 0;
+
+const quizQuestions = [
+
+{
+  question: "Si tous les A sont des B et que certains B sont des C, laquelle des affirmations suivantes est toujours vraie ?",
+  options: [
+    "Tous les A sont des C",
+    "Certains A sont des C",
+    "Aucun A n'est un C",
+    "Impossible à déterminer"
+  ],
+  answer: "Impossible à déterminer"
+},
+
+{
+  question: "Suite : 1, 4, 9, 16, 25, ___",
+  options: ["30", "35", "36", "49"],
+  answer: "36"
+},
+
+{
+  question: "Si aujourd'hui est mardi, quel jour sera-t-on dans 100 jours ?",
+  options: ["Lundi", "Mardi", "Mercredi", "Jeudi"],
+  answer: "Jeudi"
+},
+
+{
+  question: "Un homme possède 3 pièces totalisant 30 centimes. L'une d'elles n'est pas un nickel. Quelles sont ces pièces ?",
+  options: [
+    "3 pièces de 10 centimes",
+    "2 pièces de 10 centimes et 1 pièce de 5 centimes",
+    "1 pièce de 10 centimes et 2 pièces de 25 centimes",
+    "Question piège : une pièce n'est pas un nickel"
+  ],
+  answer: "2 pièces de 10 centimes et 1 pièce de 5 centimes"
+},
+
+{
+  question: "Quel est le numéro qui ne correspond pas ? 2, 3, 5, 9, 11, 13",
+  options: ["3", "5", "9", "13"],
+  answer: "9"
+}
+<!-- Lien:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach?utm_source=chatgpt.com -->
+];
+
+function startGame() {
+  showQuestion();
+}
+
+function showQuestion() {
+
+  if(currentQuestion < quizQuestions.length) {
+
+    document.getElementById("question").innerHTML =
+      quizQuestions[currentQuestion].question;
+
+    document.getElementById("resultat").innerHTML = "";
+
+let optionsHTML = "";
+
+for(let i = 0; i < quizQuestions[currentQuestion].options.length; i++) {
+
+  let option = quizQuestions[currentQuestion].options[i];
+
+  optionsHTML +=
+    "<button onclick=\"verifierReponse('" + option + "')\">" +
+    option +
+    "</button><br>";
+}
+    document.getElementById("options").innerHTML =
+      optionsHTML;
+
+  } else {
+
+    let message =
+      "Ton score final : " +
+      score + "/" + quizQuestions.length + "<br><br>";
+
+    if(score == quizQuestions.length) {
+      message += "Excellent joueur!";
+    }
+    else if(score >= 3) {
+      message += "Bon travail!";
+    }
+    else {
+      message += "Continue à pratiquer!";
+    }
+
+    document.getElementById("quiz").innerHTML =
+      "<h2>" + message + "</h2>";
+  }
+}
+
+function verifierReponse(userAnswer) {
+
+  let correctAnswer =
+    quizQuestions[currentQuestion].answer;
+
+  if(userAnswer == correctAnswer) {
+
+    score++;
+
+    document.getElementById("resultat").innerHTML =
+      "✅ Bonne réponse!";
+
+    document.getElementById("resultat").style.color =
+      "green";
+
+  } else {
+
+    document.getElementById("resultat").innerHTML =
+      " Mauvaise réponse! La bonne réponse était : " +
+      correctAnswer;
+
+    document.getElementById("resultat").style.color =
+      "red";
+  }
+
+  currentQuestion++;
+
+  setTimeout(showQuestion, 2000);
+<!-- Lien:https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout -->
+}
+
+</script>
+
+</head>
+
+<body onload="startGame()">
+
+<!-- Navigation -->
+<div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="Level1.html">Niveau 1</a>
+  <a href="Level2.html">Niveau 2</a>
+  <a href="Level3.html">Niveau 3</a>
+  <a href="Level4.html">Niveau 4</a>
+</div>
+
+<br>
+
+<h1>SoccerIQ ⚽ Niveau 4 (12e)</h1>
+
+<!-- Logo -->
+<img src="Image/SoccerIQlogo.png" width="25%">
+
+<br><br>
+
+<!-- Quiz -->
+<div class="quizBox" id="quiz">
+
+  <h2 id="question"></h2>
+
+  <div id="options"></div>
+
+  <h2 id="resultat"></h2>
+
+</div>
+
+<br>
+
+<h2>Prend ton dernié tire⚽</h2>
+
+</body>
+
+</html>
+
+<!--Lien:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions?utm_source=chatgpt.com-->
