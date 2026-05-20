@@ -136,13 +136,13 @@ for(let i = 0; i < quizQuestions[currentQuestion].options.length; i++) {
       score + "/" + quizQuestions.length + "<br><br>";
 
     if(score == quizQuestions.length) {
-      message += " Excellent joueur! Clique sur niveau 4";
+      message += " Excellent joueur! Clique sur niveau 3";
     }
     else if(score >= 3) {
-      message += " Bon travail! Clique sur niveau 4";
+      message += " Bon travail! Clique sur niveau 3";
     }
     else {
-      message += " Continue à pratiquer! Clique sur niveau 4";
+      message += " Continue à pratiquer! Clique sur niveau 3";
     }
 
     document.getElementById("quiz").innerHTML =
