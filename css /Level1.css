@@ -1,1 +1,65 @@
+<style>
 
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #1A0000;
+  color: white;
+  text-align: center;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #D2042D;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: white;
+  color: black;
+}
+
+.quizBox {
+  background-color: white;
+  color: black;
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+button {
+  background-color: #D2042D;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #8B0000;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.question {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+</style>
